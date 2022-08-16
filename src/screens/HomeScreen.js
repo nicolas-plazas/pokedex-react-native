@@ -82,10 +82,12 @@ const styles = StyleSheet.create({
 	title: {
 		fontSize: 38,
 		fontWeight: 'bold',
+		color: '#2e3056',
 	},
 	description: {
 		marginTop: 10,
 		marginBottom: 20,
+		color: '#5e5e7d',
 	},
 	searchInput: {
 		width: '100%',
@@ -93,7 +95,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 10,
 		backgroundColor: '#ebf3f5',
 		borderRadius: 10,
-		marginBottom: 25,
+		marginBottom: 30,
 	},
 	card: {
 		flex: 1,
