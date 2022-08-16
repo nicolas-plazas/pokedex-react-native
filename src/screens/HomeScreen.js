@@ -33,6 +33,7 @@ const HomeScreen = () => {
 					name: pokemonDetails.name,
 					image:
 						pokemonDetails.sprites.other?.['official-artwork']?.front_default,
+					order: pokemonDetails.order.toString(),
 				});
 			}
 
@@ -44,27 +45,28 @@ const HomeScreen = () => {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<Text style={styles.title}>Pokedex</Text>
-			<Text style={styles.description}>
-				Search for a Pokemon by name or using its National Pokedex number.
-			</Text>
+			<View style={{ margin: 25 }}>
+				<Text style={styles.title}>Pokedex</Text>
+				<Text style={styles.description}>
+					Search for a Pokemon by name or using its National Pokedex number.
+				</Text>
 
-			<TextInput style={styles.searchInput} placeholder='Name or number' />
-			{/* <Link to={{ screen: 'Detail' }}>Detail</Link> */}
-			<FlatList
-				data={pokemons}
-				numColumns={2}
-				showsVerticalScrollIndicator={false}
-				keyExtractor={(item) => item.id.toString()}
-				renderItem={({ item }) => (
-					// <View style={styles.cardsContainer}>
-					<View style={styles.card}>
-						<Image source={{ uri: item.image }} style={styles.image} />
-						<Text style={styles.cardName}>{item.name}</Text>
-						<Text style={styles.cardId}>{item.id}</Text>
-					</View>
-				)}
-			/>
+				<TextInput style={styles.searchInput} placeholder='Name or number' />
+				{/* <Link to={{ screen: 'Detail' }}>Detail</Link> */}
+				<FlatList
+					data={pokemons}
+					numColumns={2}
+					showsVerticalScrollIndicator={false}
+					keyExtractor={(item) => item.id.toString()}
+					renderItem={({ item }) => (
+						<View style={styles.card}>
+							<Image source={{ uri: item.image }} style={styles.image} />
+							<Text style={styles.cardName}>{item.name}</Text>
+							<Text style={styles.cardId}>{item.order.padStart(3, 0)}</Text>
+						</View>
+					)}
+				/>
+			</View>
 		</SafeAreaView>
 	);
 };
@@ -73,53 +75,46 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: '#fff',
 		height: '100%',
 		width: '100%',
+		backgroundColor: '#fff',
 	},
 	title: {
-		marginTop: 20,
-		fontSize: 45,
+		fontSize: 38,
 		fontWeight: 'bold',
 	},
 	description: {
-		marginTop: 5,
-		marginBottom: 25,
+		marginTop: 10,
+		marginBottom: 20,
 	},
 	searchInput: {
 		width: '100%',
 		height: 40,
 		paddingHorizontal: 10,
-		borderColor: 'gray',
-		borderWidth: 1,
+		backgroundColor: '#ebf3f5',
 		borderRadius: 10,
-	},
-	cardsContainer: {
-		// display: 'flex',
-		flex: 1,
-		gap: '1rem',
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		// height: '100%',
-		// width: '100%',
-		marginVertical: 20,
+		marginBottom: 25,
 	},
 	card: {
+		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'flex-end',
-		height: 250,
-		width: 150,
+		height: 210,
 		padding: 20,
-		margin: 5,
-		// marginBottom: 15,
-		// marginRight: 10,
+		margin: 3,
 		borderRadius: 15,
 		backgroundColor: '#c5e3d4',
 	},
+	image: {
+		width: 120,
+		height: 120,
+	},
 	cardName: {
+		marginTop: 10,
 		marginBottom: 5,
 		fontSize: 16,
 		fontWeight: 'bold',
+		textTransform: 'capitalize',
 	},
 	cardId: {
 		fontSize: 14,

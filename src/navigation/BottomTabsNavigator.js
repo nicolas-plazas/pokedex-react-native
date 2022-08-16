@@ -45,8 +45,8 @@ export default BottomTabsNavigator;
 
 const styles = StyleSheet.create({
   pokeball: {
-    width: 70,
-    height: 70,
-    top: -17,
+    width: 60,
+    height: 60,
+    top: -18,
   }
 });
